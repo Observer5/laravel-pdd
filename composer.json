@@ -1,0 +1,14 @@
+{
+    "name": "observer/laravel-pdd",
+    "description": "pdd SDK for Laravel",
+    "require": {
+        "illuminate/container": "5.1"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "sanjingshou",
+            "email": "sxpd7788@gmail.com"
+        }
+    ]
+}
