@@ -2,6 +2,7 @@
 namespace Observer\LaravelPdd;
 
 use EasyPdd\Foundation\Application;
+use Illuminate\Foundation\Application as LaravelApplication;
 use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
 
 
@@ -12,7 +13,13 @@ class ServiceProvider extends LaravelServiceProvider
      */
     public function boot()
     {
+        $source = realpath(__DIR__.'/config.php');
 
+        if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
+            $this->publishes([$source => config_path('pdd.php')], 'laravel-pdd');
+        }
+
+        $this->mergeConfigFrom($source, 'pdd');
     }
 
     /**
@@ -20,7 +27,7 @@ class ServiceProvider extends LaravelServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(Application::class, function ($laravelApp) {
+        $this->app->singleton('easy.pdd', function ($laravelApp) {
             $app = new Application(config('pdd'));
             return $app;
         });
