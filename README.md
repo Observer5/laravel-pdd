@@ -11,7 +11,7 @@ Laravel5
 ## 安装
 
 ```shell
-composer require "overtrue/laravel-wechat:~1.0"
+composer require "observer/laravel-pdd:~1.0"
 ```
 
 ## 配置
@@ -39,6 +39,36 @@ php artisan vendor:publish --provider="Observer\LaravelPdd\ServiceProvider"
 
 3. 修改应用根目录下的 `config/pdd.php` 中对应的参数即可。
 
+
+## 使用
+
+### 我们有以下方式获取 SDK 的服务实例
+
+#### 使用容器的自动注入
+
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use EasyPdd\Foundation\Application;
+
+class PddController extends Controller
+{
+
+    public function demo(Application $pdd)
+    {
+        // $pdd 则为容器中 EasyPdd\Foundation\Application 的实例
+    }
+}
+```
+
+#### 使用外观
+
+```php
+EasyPdd::oauth;
+
+```
 
 ## License
 

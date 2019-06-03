@@ -1,7 +1,7 @@
 <?php
 namespace Observer\LaravelPdd;
 
-use EasyPdd\Foundation\Application;
+use EasyPdd\Foundation\Application as Pdd;
 use Illuminate\Foundation\Application as LaravelApplication;
 use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
 
@@ -27,10 +27,12 @@ class ServiceProvider extends LaravelServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('easy.pdd', function ($laravelApp) {
-            $app = new Application(config('pdd'));
+        $this->app->singleton(Pdd::class, function ($laravelApp) {
+            $app = new Pdd(config('pdd'));
             return $app;
         });
 
+        $this->app->alias(Pdd::class, 'pdd');
+        $this->app->alias(Pdd::class, 'easypdd');
     }
 }

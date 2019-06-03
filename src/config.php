@@ -4,7 +4,7 @@ return [
 
     'log' => [
         'level' => env('PDD_LOG_LEVEL', 'debug'),
-        'file'  => env('PDD_LOG_FILE', storage_path('logs/wechat.log')),
+        'file'  => env('PDD_LOG_FILE', storage_path('logs/pdd.log')),
     ],
 
     'client_id'     => env('PDD_CLIENT_ID', 'your-client_id'),         // ClientID
