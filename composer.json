@@ -2,7 +2,8 @@
     "name": "observer/laravel-pdd",
     "description": "pdd SDK for Laravel",
     "require": {
-        "illuminate/container": "^5.1"
+        "illuminate/container": "^5.1",
+        "observer/pdd": "^1.0.0"
     },
     "license": "MIT",
     "authors": [
@@ -22,7 +23,7 @@
                 "Observer\\LaravelPdd\\ServiceProvider"
             ],
             "aliases": {
-                "EasyWeChat": "Observer\\LaravelPdd\\Facade"
+                "EasyPdd": "Observer\\LaravelPdd\\Facade"
             }
         }
     }
