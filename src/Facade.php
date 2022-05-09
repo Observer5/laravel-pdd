@@ -10,6 +10,6 @@ class Facade extends LaravelFacade
      */
     public static function getFacadeAccessor()
     {
-        return 'easy.pdd';
+        return 'EasyPdd';
     }
 }
