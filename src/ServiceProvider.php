@@ -28,7 +28,7 @@ class ServiceProvider extends LaravelServiceProvider implements DeferrableProvid
      */
     public function register()
     {
-        $this->app->singleton(Pdd::class, function ($laravelApp) {
+        $this->app->singleton('EasyPddService', function ($laravelApp) {
             $app = new Pdd(config('pdd'));
             return $app;
         });
@@ -36,6 +36,6 @@ class ServiceProvider extends LaravelServiceProvider implements DeferrableProvid
 
     public function provides()
     {
-        return ['EasyPdd'];
+        return ['EasyPddService'];
     }
 }
