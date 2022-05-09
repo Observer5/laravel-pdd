@@ -2,11 +2,12 @@
 namespace Observer\LaravelPdd;
 
 use EasyPdd\Foundation\Application as Pdd;
+use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Foundation\Application as LaravelApplication;
 use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
 
 
-class ServiceProvider extends LaravelServiceProvider
+class ServiceProvider extends LaravelServiceProvider implements DeferrableProvider
 {
     /**
      * Boot the provider.
@@ -15,9 +16,9 @@ class ServiceProvider extends LaravelServiceProvider
     {
         $source = realpath(__DIR__.'/config.php');
 
-        if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
-            $this->publishes([$source => config_path('pdd.php')], 'laravel-pdd');
-        }
+        $this->publishes([
+            __DIR__ . '/config.php' => config_path('pdd.php')
+        ], 'config');
 
         $this->mergeConfigFrom($source, 'pdd');
     }
@@ -31,8 +32,10 @@ class ServiceProvider extends LaravelServiceProvider
             $app = new Pdd(config('pdd'));
             return $app;
         });
+    }
 
-        $this->app->alias(Pdd::class, 'pdd');
-        $this->app->alias(Pdd::class, 'easypdd');
+    public function provides()
+    {
+        return ['EasyPdd'];
     }
 }
