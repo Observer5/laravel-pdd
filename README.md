@@ -1,6 +1,6 @@
 # laravel-pdd
 
-微信 SDK for Laravel 5 ， 基于 [observer/pdd](https://github.com/Observer5/pdd)
+pdd SDK for Laravel 5 ， 基于 [observer/pdd](https://github.com/Observer5/pdd)
 
 
 
