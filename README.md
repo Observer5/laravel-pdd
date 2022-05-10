@@ -66,7 +66,7 @@ class PddController extends Controller
 #### 使用外观
 
 ```php
-EasyPdd::oauth;
+EasyPdd::offsetGet('oauth');
 
 ```
 
