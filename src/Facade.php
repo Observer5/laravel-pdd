@@ -10,6 +10,15 @@ class Facade extends LaravelFacade
      */
     public static function getFacadeAccessor()
     {
-        return 'EasyPdd';
+        return 'pdd.application';
+    }
+
+    /**
+     * @param string $name
+     * @return \EasyPdd\Foundation\Application
+     */
+    public static function application($name = '')
+    {
+        return $name ? app('pdd.application.'.$name) : app('pdd.application');
     }
 }

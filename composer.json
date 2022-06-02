@@ -5,6 +5,9 @@
         "illuminate/container": "^6.0|^7.0|^8.0",
         "observer/pdd": "^1.0.0"
     },
+    "require-dev" : {
+        "laravel/framework": "^8.5"
+    },
     "license": "MIT",
     "authors": [
         {

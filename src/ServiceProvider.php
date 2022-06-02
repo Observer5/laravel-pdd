@@ -1,13 +1,13 @@
 <?php
 namespace Observer\LaravelPdd;
 
-use EasyPdd\Foundation\Application as Pdd;
+use EasyPdd\Foundation\Application as PddApplication;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Foundation\Application as LaravelApplication;
 use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
 
 
-class ServiceProvider extends LaravelServiceProvider implements DeferrableProvider
+class ServiceProvider extends LaravelServiceProvider
 {
     /**
      * Boot the provider.
@@ -28,14 +28,15 @@ class ServiceProvider extends LaravelServiceProvider implements DeferrableProvid
      */
     public function register()
     {
-        $this->app->singleton('EasyPdd', function ($laravelApp) {
-            $app = new Pdd(config('pdd'));
-            return $app;
-        });
+        $accounts = config('pdd.application');
+        foreach ($accounts as $account => $config) {
+            $this->app->bind("pdd.application.{$account}", function ($laravelApp) use ( $account, $config) {
+                return new PddApplication(array_merge(config('pdd.defaults', []), $config));
+            });
+        }
+
+        $this->app->alias("pdd.application.default", 'pdd.application');
+        $this->app->alias("pdd.application.default", 'easypdd.application');
     }
 
-    public function provides()
-    {
-        return ['EasyPdd'];
-    }
 }
