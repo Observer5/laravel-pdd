@@ -3,7 +3,7 @@
     "description": "pdd SDK for Laravel",
     "require": {
         "illuminate/container": "^6.0|^7.0|^8.0",
-        "observer/pdd": "^0.0.0"
+        "observer/pdd": "^0.0"
     },
     "require-dev" : {
         "laravel/framework": "^6.2"
